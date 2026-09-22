@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Arcade — Unblocked Games</title>
+<meta name="description" content="Nova Arcade — 100% free unblocked browser games. No downloads, no logins. Works on Chromebooks and school networks.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0e17;--bg2:#111527;--card:#161b2e;--card2:#1c2240;
+  --text:#e8ecf8;--muted:#8b93b5;--line:#232a4a;
+  --accent:#6c5ce7;--accent2:#00d2ff;--good:#2ed573;--warn:#ffa502;
+  --r:16px;--shadow:0 8px 32px rgba(0,0,0,.45);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(1200px 600px at 70% -10%,#1a2145 0%,var(--bg) 55%);color:var(--text);font-family:'Space Grotesk',sans-serif;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(108,92,231,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(108,92,231,.05) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.25rem;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+.logo svg{width:34px;height:34px}
+nav{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:9px 16px;border-radius:12px;cursor:pointer;font-family:inherit;font-size:.9rem;font-weight:600;transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,var(--accent),#8f7bff);border:none;box-shadow:0 4px 20px rgba(108,92,231,.4)}
+.btn.primary:hover{box-shadow:0 6px 28px rgba(108,92,231,.6)}
+.hero{padding:64px 0 40px;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent2);border:1px solid rgba(0,210,255,.3);background:rgba(0,210,255,.06);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.05;letter-spacing:-.03em;font-weight:700}
+.hero h1 .grad{background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);max-width:560px;margin:18px auto 28px;font-size:1.05rem}
+.searchbar{display:flex;max-width:560px;margin:0 auto;gap:10px}
+.searchbar input{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;color:var(--text);font-family:inherit;font-size:1rem;outline:none;transition:.2s}
+.searchbar input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,92,231,.2)}
+.stats{display:flex;justify-content:center;gap:40px;margin-top:36px;flex-wrap:wrap}
+.stat{font-family:'JetBrains Mono',monospace}
+.stat b{display:block;font-size:1.6rem;color:var(--text)}
+.stat span{color:var(--muted);font-size:.8rem}
+.chips{display:flex;gap:10px;flex-wrap:wrap;padding:28px 0 20px}
+.chip{padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;font-weight:600;font-size:.85rem;transition:.18s}
+.chip:hover{color:var(--text);border-color:var(--accent)}
+.chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px;padding-bottom:70px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.2s;position:relative}
+.card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--shadow)}
+.thumb{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(135deg,var(--card2),#232c58)}
+.card h3{padding:12px 16px 4px;font-size:1rem;letter-spacing:-.01em}
+.card .meta{padding:0 16px 16px;color:var(--muted);font-size:.78rem;font-family:'JetBrains Mono',monospace;display:flex;justify-content:space-between;align-items:center}
+.tag{font-size:.65rem;padding:3px 8px;border-radius:6px;background:rgba(46,213,115,.12);color:var(--good)}
+.tag.embed{background:rgba(255,165,2,.12);color:var(--warn)}
+.fav{position:absolute;top:10px;right:10px;background:rgba(11,14,23,.6);border:none;border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:14px;opacity:0;transition:.15s}
+.card:hover .fav{opacity:1}
+.fav.on{opacity:1}
+.feature{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;padding-bottom:80px}
+.fbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.fbox h3{margin-bottom:8px;font-size:1.05rem}
+.fbox p{color:var(--muted);font-size:.88rem;line-height:1.6}
+.fbox .ico{font-size:1.6rem;margin-bottom:14px;display:block}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+/* overlay player */
+#overlay{position:fixed;inset:0;background:rgba(6,8,15,.92);backdrop-filter:blur(8px);z-index:50;display:none;flex-direction:column}
+#overlay.open{display:flex}
+.obar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.obar .title{font-weight:700}
+#stage{flex:1;display:flex;align-items:center;justify-content:center;position:relative}
+#stage iframe,#stage .gamewrap{width:100%;height:100%;border:none;background:var(--bg)}
+#stage .gamewrap{display:flex;align-items:center;justify-content:center}
+.gamewrap canvas{max-width:100%;max-height:100%;image-rendering:pixelated}
+/* url launcher modal */
+#modal{position:fixed;inset:0;background:rgba(6,8,15,.8);z-index:60;display:none;align-items:center;justify-content:center}
+#modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;width:min(480px,92vw);box-shadow:var(--shadow)}
+.mbox h3{margin-bottom:6px}
+.mbox p{color:var(--muted);font-size:.85rem;margin-bottom:18px}
+.mbox input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.85rem;outline:none;margin-bottom:16px}
+.mbox input:focus{border-color:var(--accent)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--accent);padding:12px 22px;border-radius:12px;font-size:.9rem;z-index:70;transition:.3s;opacity:0}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+@media(max-width:640px){.searchbar{flex-direction:column}.stats{gap:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="#"><svg viewBox="0 0 48 48" fill="none"><rect x="4" y="4" width="40" height="40" rx="12" stroke="#6c5ce7" stroke-width="4"/><path d="M17 15v18M17 24h9m0-9v18" stroke="#e8ecf8" stroke-width="4" stroke-linecap="round"/><circle cx="31" cy="17" r="3" fill="#00d2ff"/><circle cx="35" cy="25" r="2.5" fill="#00d2ff"/></svg>Nova Arcade</a>
+  <nav>
+    <button class="btn" id="cloakBtn" title="Disguise this tab">🕶️ Cloak Tab</button>
+    <button class="btn primary" id="launchBtn">🚀 Launch URL</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="badge">⚡ 100% FREE • NO LOGINS • NO DOWNLOADS</div>
+  <h1>Play Anything.<br><span class="grad">Anywhere.</span></h1>
+  <p>A lightweight arcade that runs entirely in your browser. Built to load fast on Chromebooks, school networks, and locked-down Wi-Fi.</p>
+  <div class="searchbar">
+    <input id="search" type="text" placeholder="Search games… (e.g. snake, 2048, flappy)" autocomplete="off">
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="statCount">0</b><span>GAMES</span></div>
+    <div class="stat"><b>0ms</b><span>SERVER LAG</span></div>
+    <div class="stat"><b>100%</b><span>CLIENT-SIDE</span></div>
+  </div>
+</section>
+
+<div class="chips" id="chips"></div>
+<div class="grid" id="grid"></div>
+
+<section class="feature">
+  <div class="fbox"><span class="ico">🔒</span><h3>Runs Anywhere</h3><p>Static files only — host it on GitHub Pages, Netlify, or a USB stick. No backend means nothing to block.</p></div>
+  <div class="fbox"><span class="ico">⚡</span><h3>Instant Play</h3><p>Games are bundled locally. Zero loading spinners, zero external dependencies once the page is open.</p></div>
+  <div class="fbox"><span class="ico">🕶️</span><h3>Tab Cloaking</h3><p>One click disguises the tab title and icon to look like Google Classroom or Google Drive.</p></div>
+  <div class="fbox"><span class="ico">🚀</span><h3>URL Launcher</h3><p>Paste any game URL and it opens inside Nova Arcade. Combine with about:blank launching for stealth.</p></div>
+</section>
+
+<footer><span>Nova Arcade — open source, MIT license.</span><span>Made with ⚡ for bored students everywhere.</span></footer>
+</div>
+
+<div id="overlay">
+  <div class="obar">
+    <span class="title" id="otitle">Game</span>
+    <div style="display:flex;gap:8px">
+      <button class="btn" id="orestart">↻ Restart</button>
+      <button class="btn" id="ofull">⛶ Fullscreen</button>
+      <button class="btn primary" id="oclose">✕ Close</button>
+    </div>
+  </div>
+  <div id="stage"></div>
+</div>
+
+<div id="modal">
+  <div class="mbox">
+    <h3>🚀 Launch any URL</h3>
+    <p>Loads any website or game inside Nova Arcade. For extra stealth, use the about:blank trick: right-click → open link in new tab from the launcher page.</p>
+    <input id="urlInput" type="text" placeholder="https://example.com/game" spellcheck="false">
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn" id="mclose">Cancel</button>
+      <button class="btn primary" id="mgo">Launch</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="games.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
