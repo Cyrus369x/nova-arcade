@@ -1,4 +1,4 @@
-// Nova Arcade — game catalog. Add your own games here!
+// Ulka — game catalog. Add your own games here!
 // type "builtin" = bundled game (id maps to engine.js), type "embed" = external iframe URL.
 const GAMES = [
   {id:'snake',     name:'Neon Snake',      cat:'Arcade', emoji:'🐍', type:'builtin', desc:'Classic snake with neon trails.'},
